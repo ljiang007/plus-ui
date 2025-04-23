@@ -34,9 +34,13 @@ const emit = defineEmits<{
   (e: 'update', components: CanvasComponent[]): void;
 }>();
 
-watch(canvasComponents, (newComponents) => {
-  emit('update', newComponents);
-}, { deep: true });
+watch(
+  canvasComponents,
+  (newComponents) => {
+    emit('update', newComponents);
+  },
+  { deep: true }
+);
 
 // 处理组件选中
 const handleSelect = (component: CanvasComponent) => {
@@ -62,7 +66,7 @@ const handleDelete = (component: CanvasComponent) => {
   if (canvasComponents.value.length > 0) {
     selectedComponentId.value = canvasComponents.value[canvasComponents.value.length - 1].id || null;
   }
-  emit('select', canvasComponents);
+  emit('select', canvasComponents.value[canvasComponents.value.length - 1]);
 };
 </script>
 
@@ -79,14 +83,9 @@ const handleDelete = (component: CanvasComponent) => {
   height: 100%;
   box-sizing: border-box;
   overflow: hidden;
-
-  :deep(.el-col) {
-    border-radius: 4px;
-
-    div {
-      background: red;
-    }
-  }
+  // width: 1920px;
+  // transform: scale(0.644);
+  // transform-origin: 0 0;
 }
 
 .canvas-container {

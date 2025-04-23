@@ -3,8 +3,8 @@
     <el-row type="flex">
       <el-col :span="4"> <Sidebar /> </el-col>
       <el-col :span="16">
-        <Operation />
-        <Canvas @select="handleSelect" @update="updateCanvas" />
+        <Operation :canvasComponents="canvasComponents" />
+        <Canvas />
       </el-col>
       <el-col :span="4"> <Attribute :selectedComponent="selectedComponent" @update="handleUpdate" /> </el-col>
     </el-row>
@@ -25,8 +25,8 @@ interface CanvasComponent {
   props?: any;
 }
 
-const selectedComponent = ref<any>(null);
-const canvasComponents = ref<CanvasComponent[]>([]);
+const selectedComponent = ref<any>(null); //当前选中的组件数据
+const canvasComponents = ref<CanvasComponent[]>([]); //画布上的所有组件数据
 
 const handleSelect = (component: any) => {
   selectedComponent.value = component;

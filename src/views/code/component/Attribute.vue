@@ -2,7 +2,7 @@
   <div>
     {{ selectedComponent }}
 
-    <component :is="componentEditorMap[selectedComponent.type]" v-if="selectedComponent" :propsData="selectedComponent" @update="update" />
+    <component :is="componentEditorMap[selectedComponent.type]" v-if="selectedComponent" :propsData="selectedComponent"  @update="update" />
   </div>
 </template>
 

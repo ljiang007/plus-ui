@@ -1,10 +1,15 @@
 <template>
-  13{{ component }}
   <!-- 递归组件渲染 -->
-  <div class="component-renderer" :class="{ 'is-selected': isSelected }" @click="$emit('select', component)">
-    <component :is="componentRendererMap[component.type]" :compProps="component.props" />
-    <div class="delete-icon" @click="$emit('delete', component)">
-      <el-icon><Delete /></el-icon>
+  <!-- 基础只需要传component.props，布局组则需要传整个 component-->
+  <div class="component-renderer" :class="{ 'is-selected': isSelected && component.type !== 'grid', 'no-wrap': component.type != 'grid' }" @click="$emit('select', component)">
+    <component
+      :is="componentRendererMap[component.type]"
+      :compProps="component.props"
+      :componentLayout="component"
+      @select="select"
+    />
+    <div class="delete-icon" @click="$emit('delete', component)" v-if="isSelected">
+      <el-icon><DeleteFilled /></el-icon>
     </div>
   </div>
 </template>
@@ -13,7 +18,11 @@
 import { defineProps, defineEmits } from 'vue';
 import { componentRendererMap } from '@/utils/componentFactory';
 
-defineEmits(['select', 'delete']);
+const emit = defineEmits(['select', 'delete']);
+
+const select = (component: any) => {
+  emit('select', component);
+};
 
 const props = defineProps<{
   component: any;
@@ -27,6 +36,13 @@ const props = defineProps<{
   padding: 2px;
   position: relative;
   cursor: pointer;
+}
+
+/* 区分换行不换行 */
+.no-wrap {
+  display: inline-block;
+  vertical-align: top;
+  margin: 2px;
 }
 
 .component-renderer:hover {
@@ -43,7 +59,13 @@ const props = defineProps<{
   position: absolute;
   right: 0;
   bottom: 0;
-  color: red;
+  background-color: red;
   cursor: pointer;
+  width: 20px;
+  height: 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

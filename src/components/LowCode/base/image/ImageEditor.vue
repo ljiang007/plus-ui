@@ -1,6 +1,5 @@
 <template>
   <div>
-    ==={{propsData  }}
     <el-input v-model="propsData.props.attr.src" @input="update" />
   </div>
 </template>
