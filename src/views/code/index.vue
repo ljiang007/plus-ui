@@ -1,10 +1,11 @@
 <template>
+  <!-- {{ canvasComponents }} -->
   <div class="code">
     <el-row type="flex">
       <el-col :span="4"> <Sidebar /> </el-col>
       <el-col :span="16">
         <Operation :canvasComponents="canvasComponents" />
-        <Canvas />
+        <Canvas @select="handleSelect" @update="updateCanvas" />
       </el-col>
       <el-col :span="4"> <Attribute :selectedComponent="selectedComponent" @update="handleUpdate" /> </el-col>
     </el-row>

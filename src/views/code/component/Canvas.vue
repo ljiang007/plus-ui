@@ -68,6 +68,7 @@ const handleDelete = (component: CanvasComponent) => {
   }
   emit('select', canvasComponents.value[canvasComponents.value.length - 1]);
 };
+
 </script>
 
 <style scoped lang="scss">

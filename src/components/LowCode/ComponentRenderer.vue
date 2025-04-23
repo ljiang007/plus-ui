@@ -2,7 +2,12 @@
   <!-- 递归组件渲染 -->
   <!-- 基础只需要传component.props，布局组则需要传整个 component-->
   <div class="component-renderer" :class="{ 'is-selected': isSelected }" @click="$emit('select', component)">
-    <component :is="componentRendererMap[component.type]" :compProps="isGrid ? component : component.props" @select="select" />
+    <component
+      :is="componentRendererMap[component.type]"
+      :compProps="isGrid ? component : component.props"
+      @select="select"
+      :isSelected="isSelected"
+    />
     <div class="delete-icon" @click="$emit('delete', component)" v-if="isSelected">
       <el-icon><DeleteFilled /></el-icon>
     </div>

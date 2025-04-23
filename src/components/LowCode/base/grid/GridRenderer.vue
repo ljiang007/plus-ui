@@ -1,7 +1,8 @@
 <template>
+  
   <el-row>
     <el-col v-for="item in compProps.children" :key="item.id" :span="item.props.attr.span">
-      <div class="col-box" @click.stop="selectComponent(item.id)">
+      <div class="col-box" @click.stop="selectComponent(item)" :class="{ 'is-selected': isSelected }">
         {{ item.id }}
       </div>
       <!-- <component :is="componentRendererMap[item.type]" :compProps="item.props" @select="select" /> -->
@@ -12,18 +13,15 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue';
 
-const { compProps } = defineProps<{
+const { compProps, isSelected } = defineProps<{
   compProps: any;
+  isSelected: boolean;
 }>();
 
 const emit = defineEmits(['select']);
 
-const select = (component: any) => {
+const selectComponent = (component) => {
   emit('select', component);
-};
-
-const selectComponent = (id: string) => {
-  console.log('1111', id);
 };
 </script>
 
@@ -39,5 +37,7 @@ const selectComponent = (id: string) => {
 .col-box:hover {
   outline: 1px solid #2e73ff;
   z-index: 9;
+}
+.solid {
 }
 </style>
