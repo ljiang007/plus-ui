@@ -5,7 +5,10 @@
     <component
       :is="componentRendererMap[component.type]"
       :compProps="isGrid ? component : component.props"
+      :selectedColId="selectedColId"
+      :selectedComponentId="selectedComponentId"
       @select="select"
+      @update="handleUpdate"
       :isSelected="isSelected"
     />
     <div class="delete-icon" @click="$emit('delete', component)" v-if="isSelected">
@@ -15,18 +18,24 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, defineEmits } from 'vue';
+import { defineProps, defineEmits, computed } from 'vue';
 import { componentRendererMap } from '@/utils/componentFactory';
 
-const emit = defineEmits(['select', 'delete']);
+const emit = defineEmits(['select', 'delete', 'update']);
 
 const select = (component: any) => {
   emit('select', component);
 };
 
+const handleUpdate = (component: any) => {
+  emit('update', component);
+};
+
 const props = defineProps<{
   component: any;
   isSelected?: boolean;
+  selectedColId?: string | null;
+  selectedComponentId?: string | null;
 }>();
 
 const isGrid = computed(() => {

@@ -2,14 +2,17 @@
   <div class="canvas">
     <!-- 总数据：{{ canvasComponents.length }} -->
     <div class="canvas-content">
-      <VueDraggable v-model="canvasComponents" group="components" item-key="id" class="canvas-container" @add="handleAdd">
+      <VueDraggable v-model="canvasComponents" :group="{ name: 'components', put: ['components', 'colComponents'] }" item-key="id" class="canvas-container" @add="handleAdd">
         <ComponentRenderer
           v-for="element in canvasComponents"
           :key="element.id"
           :component="element"
           :is-selected="selectedComponentId === element.id"
+          :selectedColId="selectedColId"
+          :selectedComponentId="selectedComponentId"
           @select="handleSelect"
           @delete="handleDelete"
+          @update="handleUpdate"
         />
       </VueDraggable>
     </div>
@@ -25,12 +28,14 @@ interface CanvasComponent {
   type: string;
   label: string;
   id?: string;
+  children?: CanvasComponent[];
 }
 
 const canvasComponents = ref<CanvasComponent[]>([]);
 const selectedComponentId = ref<string | null>(null);
+const selectedColId = ref<string | null>(null);
 const emit = defineEmits<{
-  (e: 'select', component: CanvasComponent): void;
+  (e: 'select', component: CanvasComponent | null): void;
   (e: 'update', components: CanvasComponent[]): void;
 }>();
 
@@ -44,7 +49,21 @@ watch(
 
 // 处理组件选中
 const handleSelect = (component: CanvasComponent) => {
-  selectedComponentId.value = component.id || null;
+  // 清除当前所有选中状态
+  selectedComponentId.value = null;
+  selectedColId.value = null;
+  
+  if (component) {
+    if (component.type === 'col') {
+      // 如果选中的是col列，设置selectedColId
+      selectedColId.value = component.id || null;
+    } else {
+      // 如果选中的是普通组件，设置selectedComponentId
+      selectedComponentId.value = component.id || null;
+    }
+  }
+  
+  // 通知父组件选中状态变化
   emit('select', component);
 };
 
@@ -52,6 +71,10 @@ const handleSelect = (component: CanvasComponent) => {
 const handleAdd = (event: any) => {
   // 获取新添加的组件索引
   const newIndex = event.newIndex;
+  
+  // 清除可能存在的col选中状态
+  selectedColId.value = null;
+  
   // 自动选中新添加的组件
   if (canvasComponents.value[newIndex]) {
     selectedComponentId.value = canvasComponents.value[newIndex].id || null;
@@ -69,6 +92,28 @@ const handleDelete = (component: CanvasComponent) => {
   emit('select', canvasComponents.value[canvasComponents.value.length - 1]);
 };
 
+// 处理组件更新
+const handleUpdate = (component: CanvasComponent) => {
+  // 查找并更新组件
+  const updateComponent = (components: CanvasComponent[]) => {
+    for (let i = 0; i < components.length; i++) {
+      if (components[i].id === component.id) {
+        components[i] = component;
+        return true;
+      }
+      // 递归查找子组件
+      if (components[i].children && components[i].children.length > 0) {
+        if (updateComponent(components[i].children)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+  
+  // 更新组件
+  updateComponent(canvasComponents.value);
+};
 </script>
 
 <style scoped lang="scss">
