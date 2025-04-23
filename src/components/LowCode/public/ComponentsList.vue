@@ -44,7 +44,12 @@ const cloneComponent = (item: ListItem) => {
     componentMaps.basics.find((comp) => comp.type === item.type) ||
     componentMaps.layout.find((comp) => comp.type === item.type) ||
     componentMaps.custom.find((comp) => comp.type === item.type);
-
+  //item的children的长度不等于0，递归加上id
+  if (item.children && item.children.length > 0) {
+    item.children.forEach((child) => {
+      child.id = `${child.type}_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    });
+  }
   return {
     ...item,
     props: initialConfig?.props ? JSON.parse(JSON.stringify(initialConfig.props)) : undefined,

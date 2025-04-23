@@ -1,13 +1,8 @@
 <template>
   <!-- 递归组件渲染 -->
   <!-- 基础只需要传component.props，布局组则需要传整个 component-->
-  <div class="component-renderer" :class="{ 'is-selected': isSelected && component.type !== 'grid', 'no-wrap': component.type != 'grid' }" @click="$emit('select', component)">
-    <component
-      :is="componentRendererMap[component.type]"
-      :compProps="component.props"
-      :componentLayout="component"
-      @select="select"
-    />
+  <div class="component-renderer" :class="{ 'is-selected': isSelected }" @click="$emit('select', component)">
+    <component :is="componentRendererMap[component.type]" :compProps="isGrid ? component : component.props" @select="select" />
     <div class="delete-icon" @click="$emit('delete', component)" v-if="isSelected">
       <el-icon><DeleteFilled /></el-icon>
     </div>
@@ -28,12 +23,16 @@ const props = defineProps<{
   component: any;
   isSelected?: boolean;
 }>();
+
+const isGrid = computed(() => {
+  return props.component.type === 'grid';
+});
 </script>
 
 <style>
 .component-renderer {
   outline: 1px dashed #ddd;
-  padding: 2px;
+  padding: 4px;
   position: relative;
   cursor: pointer;
 }
@@ -67,5 +66,6 @@ const props = defineProps<{
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 9999;
 }
 </style>
