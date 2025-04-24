@@ -43,7 +43,7 @@ const { propsData, ide } = defineProps<{
 }>();
 
 const update = (value: string) => {
-  emit('update', propsData);
+  emit('update', value);
 };
 </script>
 

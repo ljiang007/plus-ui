@@ -88,7 +88,7 @@ export const componentMaps: ComponentMaps = {
     {
       type: 'news',
       label: '新闻组件',
-     
+
       props: {
         temp: '1',
         attr: {
@@ -105,8 +105,10 @@ export const componentMaps: ComponentMaps = {
           perNum: 2322
         },
         style: {
-          color: '#000',
-          fontSize: 14
+          padding: 20,
+          margin: 0,
+          background: '#fff',
+          borderRadius: 10
         }
       }
     },

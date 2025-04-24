@@ -1,5 +1,13 @@
 <template>
-  <div class="news1">
+  <div
+    class="news1"
+    :style="{
+      ...compProps.style,
+      padding: addPxIfNeeded(compProps.style.padding),
+      margin: addPxIfNeeded(compProps.style.margin),
+      borderRadius: addPxIfNeeded(compProps.style.borderRadius)
+    }"
+  >
     <div class="header">
       <div class="title">{{ compProps.attr.title }}</div>
       <div class="more" @click="to(compProps.attr.morePath)">{{ compProps.attr.more }}</div>
@@ -36,6 +44,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Timer, View } from '@element-plus/icons-vue';
+import { addPxIfNeeded } from '@/components/LowCode/utils/styleUtils';
 
 const { compProps, isClick } = defineProps<{
   compProps: any;
@@ -53,11 +62,8 @@ const to = (path: string) => {
 
 <style scoped>
 .news1 {
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 1);
   color: rgba(16, 16, 16, 1);
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
-  padding: 20px;
   width: 100%;
 }
 .header {

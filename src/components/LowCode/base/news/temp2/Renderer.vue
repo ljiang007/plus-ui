@@ -1,5 +1,12 @@
 <template>
-  <div class="news2">
+  <div
+    class="news2"
+    :style="{
+      ...compProps.style,
+      padding: addPxIfNeeded(compProps.style.padding),
+      margin: addPxIfNeeded(compProps.style.margin),
+    }"
+  >
     <div class="news-header">
       <div class="header-item">
         <div class="header-left">{{ compProps.attr.title }}</div>
@@ -30,6 +37,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Timer, View } from '@element-plus/icons-vue';
+import { addPxIfNeeded } from '@/components/LowCode/utils/styleUtils';
 
 const { compProps, isClick } = defineProps<{
   compProps: any;
@@ -48,10 +56,6 @@ const to = (path: string) => {
 </script>
 
 <style scoped>
-.news2 {
-  padding: 18px 22px;
-  background-color: #fff;
-}
 .news-header {
   margin-bottom: 20px;
 }

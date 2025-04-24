@@ -1,6 +1,6 @@
 <template>
   <div class="attr">
-    {{ selectedComponent }}
+    <!-- {{ selectedComponent }} -->
     <el-tabs v-model="activeName" class="demo-tabs" v-if="selectedComponent">
       <el-tab-pane label="样式配置" name="style">
         <component :is="componentEditorMap[selectedComponent.type]" ide="style" :propsData="selectedComponent" @update="update" />

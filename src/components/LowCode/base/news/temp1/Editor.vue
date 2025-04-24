@@ -1,4 +1,23 @@
 <template>
+  {{ propsData.props.style }}
+  <el-form label-position="top" v-if="ide == 'style'">
+    <div class="other-setting">基础设置</div>
+    <el-form-item label="内边距">
+      <el-input-number v-model="propsData.props.style.padding" :min="1"  controls-position="right" @input="update" />
+      <el-button disabled>px</el-button>
+    </el-form-item>
+    <el-form-item label="外边距">
+      <el-input-number v-model="propsData.props.style.margin" :min="1"  controls-position="right" @input="update" />
+      <el-button disabled>px</el-button>
+    </el-form-item>
+    <el-form-item label="背景颜色">
+      <el-color-picker v-model="propsData.props.style.background" @input="update" />
+    </el-form-item>
+    <el-form-item label="圆角">
+      <el-input-number v-model="propsData.props.style.borderRadius" :min="1"  controls-position="right" @input="update" />
+      <el-button disabled>px</el-button>
+    </el-form-item>
+  </el-form>
   <el-form label-position="top" v-if="ide == 'attr'">
     <div class="other-setting">新闻设置</div>
     <el-form-item label="新闻标题">
@@ -74,7 +93,7 @@ const { propsData } = defineProps<{
 }>();
 
 const update = (value: string) => {
-  emit('update', propsData);
+  emit('update', value);
 };
 </script>
 
