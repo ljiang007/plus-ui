@@ -9,6 +9,9 @@ import GridEditor from '@/components/LowCode/base/grid/gridEditor.vue';
 import ButtonRenderer from '@/components/LowCode/base/button/ButtonRenderer.vue';
 import ButtonEditor from '@/components/LowCode/base/button/ButtonEditor.vue';
 
+import NewsRenderer from '@/components/LowCode/base/news/newsRenderer.vue';
+import NewsEditor from '@/components/LowCode/base/news/newsEditor.vue';
+
 interface ComponentItem {
   type: string;
   label: string;
@@ -26,14 +29,16 @@ export const componentRendererMap = {
   text: TextRenderer,
   image: ImageRenderer,
   grid: GridRenderer,
-  button: ButtonRenderer
+  button: ButtonRenderer,
+  news: NewsRenderer
 };
 
 export const componentEditorMap = {
   text: TextEditor,
   image: ImageEditor,
   grid: GridEditor,
-  button: ButtonEditor
+  button: ButtonEditor,
+  news: NewsEditor
 };
 
 export const componentMaps: ComponentMaps = {
@@ -80,7 +85,31 @@ export const componentMaps: ComponentMaps = {
     { type: 'card', label: '卡片布局' }
   ],
   custom: [
-    { type: 'news', label: '新闻组件' },
+    {
+      type: 'news',
+      label: '新闻组件',
+     
+      props: {
+        temp: '1',
+        attr: {
+          path: '',
+          title: '新闻标题',
+          more: '更多 >',
+          morePath: '',
+          conTitle: '内容标题',
+          content: '新闻内容',
+          image: 'https://static.form-create.com/example.png',
+          time_icon: 'Timer',
+          time: '2025-02-28',
+          perNum_icon: 'View',
+          perNum: 2322
+        },
+        style: {
+          color: '#000',
+          fontSize: 14
+        }
+      }
+    },
     { type: 'notice', label: '公告组件' },
     { type: 'product', label: '风采组件' },
     { type: 'overview', label: '概况组件' },

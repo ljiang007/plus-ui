@@ -1,6 +1,6 @@
 <template>
   <div v-for="component in canvasComponents" :key="component.id" class="component-preview">
-    <component :is="componentRendererMap[component.type]" :compProps="component.props" />
+    <component :is="componentRendererMap[component.type]" :isClick="true" type="preview" :compProps="component.props" />
   </div>
 </template>
 
@@ -14,6 +14,7 @@ const props = defineProps<{
 
 <style scoped>
 .component-preview {
+  width: 100%;
   display: inline-block;
   vertical-align: top;
   margin: 2px;

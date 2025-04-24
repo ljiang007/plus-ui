@@ -38,6 +38,7 @@ const updateCanvas = (components: CanvasComponent[]) => {
 };
 
 const handleUpdate = (propsData: any) => {
+  // canvasComponents.value=propsData
   console.log('handleUpdate111', canvasComponents);
   //使用递归canvasComponents，找到selectedComponent，并更新propsData
   console.log('handleUpdate222', propsData);
