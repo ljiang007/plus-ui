@@ -1,16 +1,19 @@
 <template>
-  <!--切换数据是否保留？  -->
+    <!-- 来回切换上一次的数据保留？ -->
   <el-radio-group v-model="localProps.props.temp" @change="tempChange">
     <el-radio value="1" size="large">模板1</el-radio>
     <el-radio value="2" size="large">模板2</el-radio>
   </el-radio-group>
-  <!-- <TempEditor v-if="localProps.props.temp == '1'" :propsData="localProps" :ide="ide" /> -->
+  <TempEditor1 v-if="localProps.props.temp == '1'" :propsData="localProps" :ide="ide" />
+  <!-- <TempEditor2 v-if="localProps.props.temp == '2'" :propsData="localProps" :ide="ide" /> -->
 </template>
 
 <script setup lang="ts">
-// import TempEditor from './temp1/Editor';
+import TempEditor1 from './temp1/Editor';
+import TempEditor2 from './temp1/Editor';
 import { defineProps, ref, reactive } from 'vue';
 import { componentMaps } from '@/utils/componentFactory';
+
 
 const emit = defineEmits<{
   (e: 'update', propsData: any): void;
@@ -31,6 +34,8 @@ const update = (value: string) => {
 const initNews = componentMaps.custom[0];
 
 const tempChange = (value: string) => {
+  
+  
   // 触发更新事件，通知父组件数据变化
   emit('update', localProps);
 };
