@@ -6,6 +6,9 @@ import ImageEditor from '@/components/LowCode/base/image/ImageEditor.vue';
 import GridRenderer from '@/components/LowCode/base/grid/GridRenderer.vue';
 import GridEditor from '@/components/LowCode/base/grid/gridEditor.vue';
 
+import ButtonRenderer from '@/components/LowCode/base/button/ButtonRenderer.vue';
+import ButtonEditor from '@/components/LowCode/base/button/ButtonEditor.vue';
+
 interface ComponentItem {
   type: string;
   label: string;
@@ -22,13 +25,15 @@ interface ComponentMaps {
 export const componentRendererMap = {
   text: TextRenderer,
   image: ImageRenderer,
-  grid: GridRenderer
+  grid: GridRenderer,
+  button: ButtonRenderer
 };
 
 export const componentEditorMap = {
   text: TextEditor,
   image: ImageEditor,
-  grid: GridEditor
+  grid: GridEditor,
+  button: ButtonEditor
 };
 
 export const componentMaps: ComponentMaps = {
@@ -39,10 +44,8 @@ export const componentMaps: ComponentMaps = {
       props: {
         text: '默认文本',
         style: {
-          fontSize: '14px',
-          color: '#000000',
-          margin: '0px',
-          padding: '0px',
+          fontSize: 14,
+          color: '#000',
           textAlign: 'left'
         },
         attr: {}
@@ -56,15 +59,12 @@ export const componentMaps: ComponentMaps = {
           src: 'https://static.form-create.com/example.png'
         },
         style: {
-          width: '100px',
-          height: '100px',
-          margin: '0px',
-          padding: '0px'
+          width: 100,
+          height: 100
         }
       }
     },
-    { type: 'button', label: '按钮' },
-    { type: 'link', label: '链接' }
+    { type: 'button', label: '按钮', props: { text: '按钮', attr: { type: 'default' }, style: { fontSize: 14, color: '#000' } } }
   ],
   layout: [
     {

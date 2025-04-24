@@ -1,5 +1,5 @@
 <template>
-  <el-image :style="compProps.style" :src="compProps.attr.src" />
+  <el-image :style="{ ...compProps.style, width: compProps.style.width + 'px', height: compProps.style.height + 'px' }" :src="compProps.attr.src" />
 </template>
 
 <script setup lang="ts">

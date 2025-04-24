@@ -1,5 +1,5 @@
 <template>
-  <div>{{ compProps.text }}</div>
+  <div :style="{ ...compProps.style, fontSize: compProps.style.fontSize + 'px' }">{{ compProps.text }}</div>
 </template>
 
 <script setup lang="ts">
