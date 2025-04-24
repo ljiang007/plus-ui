@@ -1,6 +1,6 @@
 <template>
   <div class="canvas">
-    <!-- 总数据：{{ canvasComponents.length }} -->
+    总数据：{{ canvasComponents }}
     <div class="canvas-content">
       <VueDraggable v-model="canvasComponents" :group="{ name: 'components', put: ['components', 'colComponents'] }" item-key="id" class="canvas-container" @add="handleAdd">
         <ComponentRenderer

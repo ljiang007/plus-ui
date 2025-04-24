@@ -97,7 +97,7 @@ export const componentMaps: ComponentMaps = {
           more: '更多 >',
           morePath: '',
           conTitle: '内容标题',
-          content: '新闻内容',
+          content: '内容',
           image: 'https://static.form-create.com/example.png',
           time_icon: 'Timer',
           time: '2025-02-28',

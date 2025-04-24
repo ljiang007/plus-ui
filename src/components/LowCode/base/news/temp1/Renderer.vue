@@ -1,5 +1,5 @@
 <template>
-  <div class="news">
+  <div class="news1">
     <div class="header">
       <div class="title">{{ compProps.attr.title }}</div>
       <div class="more" @click="to(compProps.attr.morePath)">{{ compProps.attr.more }}</div>
@@ -52,7 +52,7 @@ const to = (path: string) => {
 </script>
 
 <style scoped>
-.news {
+.news1 {
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 1);
   color: rgba(16, 16, 16, 1);

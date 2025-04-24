@@ -30,6 +30,7 @@ const selectedComponent = ref<any>(null); //当前选中的组件数据
 const canvasComponents = ref<CanvasComponent[]>([]); //画布上的所有组件数据
 
 const handleSelect = (component: any) => {
+  console.log('选中',component)
   selectedComponent.value = component;
 };
 
