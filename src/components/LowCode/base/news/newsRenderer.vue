@@ -22,11 +22,7 @@ const props = defineProps<{
 // 提取主要属性和额外属性
 const { compProps, isClick } = props;
 
-// 创建一个对象来保存额外的属性
-const extraProps = computed(() => {
-  const { isSelected, selectedComponentId, selectedColId, type } = props;
-  return { isSelected, selectedComponentId, selectedColId, type };
-});
+
 
 const emit = defineEmits<{
   (e: 'update', propsData: any): void;

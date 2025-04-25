@@ -4,7 +4,7 @@
     :style="{
       ...compProps.style,
       padding: addPxIfNeeded(compProps.style.padding),
-      margin: addPxIfNeeded(compProps.style.margin),
+      margin: addPxIfNeeded(compProps.style.margin)
     }"
   >
     <div class="news-header">
@@ -14,8 +14,8 @@
       </div>
     </div>
     <div class="news-main">
-      <div class="main-item">
-        <div class="main-left" :class="{ 'select': select }" @click="to(compProps.attr.path)">
+      <div class="main-item" @click="to(compProps.attr.path)">
+        <div class="main-left" :class="{ 'select': select }">
           <div class="left-tit">
             <div class="tit-left">{{ compProps.attr.conTitle }}</div>
             <div class="tit-right">
@@ -77,6 +77,7 @@ const to = (path: string) => {
   display: flex;
   /* align-items: center; */
   justify-content: flex-end;
+  margin-top: 20px;
 }
 .main-left {
   border: 1px solid rgba(205, 205, 205, 0.5);

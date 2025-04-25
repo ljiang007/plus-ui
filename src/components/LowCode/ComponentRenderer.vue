@@ -3,7 +3,10 @@
   <!-- 基础只需要传component.props，布局组则需要传整个 component-->
   <div
     class="component-renderer"
-    :class="{ 'is-selected': isSelected, 'no-wrap': component.type != 'grid' && component.type != 'news' }"
+    :class="{
+      'is-selected': isSelected,
+      'no-wrap': component.type == 'text' || component.type == 'image' || component.type == 'button'
+    }"
     @click="$emit('select', component)"
   >
     <component

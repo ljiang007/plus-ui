@@ -12,6 +12,21 @@ import ButtonEditor from '@/components/LowCode/base/button/ButtonEditor.vue';
 import NewsRenderer from '@/components/LowCode/base/news/newsRenderer.vue';
 import NewsEditor from '@/components/LowCode/base/news/newsEditor.vue';
 
+import NoticeRenderer from '@/components/LowCode/base/notice/noticeRenderer.vue';
+import NoticeEditor from '@/components/LowCode/base/notice/noticeEditor.vue';
+
+import MienRenderer from '@/components/LowCode/base/mien/mienRenderer.vue';
+import MienEditor from '@/components/LowCode/base/mien/mienEditor.vue';
+
+import SurveyRenderer from '@/components/LowCode/base/survey/surveyRenderer.vue';
+import SurveyEditor from '@/components/LowCode/base/survey/surveyEditor.vue';
+
+import WeekRenderer from '@/components/LowCode/base/week/weekRenderer.vue';
+import WeekEditor from '@/components/LowCode/base/week/weekEditor.vue';
+
+import SwiperRenderer from '@/components/LowCode/base/swiper/swiperRenderer.vue';
+import SwiperEditor from '@/components/LowCode/base/swiper/swiperEditor.vue';
+
 interface ComponentItem {
   type: string;
   label: string;
@@ -30,7 +45,12 @@ export const componentRendererMap = {
   image: ImageRenderer,
   grid: GridRenderer,
   button: ButtonRenderer,
-  news: NewsRenderer
+  news: NewsRenderer,
+  notice: NoticeRenderer,
+  mien: MienRenderer,
+  survey: SurveyRenderer,
+  week: WeekRenderer,
+  swiper: SwiperRenderer
 };
 
 export const componentEditorMap = {
@@ -38,7 +58,12 @@ export const componentEditorMap = {
   image: ImageEditor,
   grid: GridEditor,
   button: ButtonEditor,
-  news: NewsEditor
+  news: NewsEditor,
+  notice: NoticeEditor,
+  mien: MienEditor,
+  survey: SurveyEditor,
+  week: WeekEditor,
+  swiper: SwiperEditor
 };
 
 export const componentMaps: ComponentMaps = {
@@ -112,9 +137,33 @@ export const componentMaps: ComponentMaps = {
         }
       }
     },
-    { type: 'notice', label: '公告组件' },
-    { type: 'product', label: '风采组件' },
-    { type: 'overview', label: '概况组件' },
-    { type: 'carousel', label: '轮播组件' }
+    {
+      type: 'notice',
+      label: '公告组件',
+      props: {
+        temp: '1',
+        attr: {
+          path: '',
+          title: '公告标题',
+          titContent: '公告内容标题',
+          more: '更多 >',
+          morePath: '',
+          content: '公告内容',
+          time: '2025-02-28',
+          createdBy: '---学校',
+          image: 'https://static.form-create.com/example.png'
+        },
+        style: {
+          padding: 20,
+          margin: 0,
+          background: '#fff',
+          borderRadius: 10
+        }
+      }
+    },
+    { type: 'mien', label: '风采组件' },
+    { type: 'survey', label: '概况组件' },
+    { type: 'week', label: '周安排组件' },
+    { type: 'swiper', label: '轮播组件' }
   ]
 };

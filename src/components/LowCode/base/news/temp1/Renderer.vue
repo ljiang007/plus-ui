@@ -13,27 +13,29 @@
       <div class="more" @click="to(compProps.attr.morePath)">{{ compProps.attr.more }}</div>
     </div>
 
-    <div class="main" @click="to(compProps.attr.path)">
-      <div class="img">
-        <el-image style="width: 240px; height: 160px; border-radius: 10px" :src="compProps.attr.image"></el-image>
-      </div>
-      <div class="content">
-        <div class="con-tit">{{ compProps.attr.conTitle }}</div>
-        <div class="con-con">
-          {{ compProps.attr.content }}
+    <div class="main">
+      <div class="main-item" @click="to(compProps.attr.path)">
+        <div class="img">
+          <el-image style="width: 240px; height: 160px; border-radius: 10px" :src="compProps.attr.image"></el-image>
         </div>
-        <div class="footer">
-          <div class="footer-left">
-            <span
-              ><el-icon><component :is="compProps.attr.time_icon" /></el-icon
-            ></span>
-            <span style="padding-top: 2px">{{ compProps.attr.time }}</span>
+        <div class="content">
+          <div class="con-tit">{{ compProps.attr.conTitle }}</div>
+          <div class="con-con">
+            {{ compProps.attr.content }}
           </div>
-          <div class="footer-right">
-            <span
-              ><el-icon><component :is="compProps.attr.perNum_icon" /></el-icon
-            ></span>
-            <span>{{ compProps.attr.perNum }}人</span>
+          <div class="footer">
+            <div class="footer-left">
+              <span
+                ><el-icon><component :is="compProps.attr.time_icon" /></el-icon
+              ></span>
+              <span style="padding-top: 2px">{{ compProps.attr.time }}</span>
+            </div>
+            <div class="footer-right">
+              <span
+                ><el-icon><component :is="compProps.attr.perNum_icon" /></el-icon
+              ></span>
+              <span>{{ compProps.attr.perNum }}人</span>
+            </div>
           </div>
         </div>
       </div>
@@ -80,7 +82,7 @@ const to = (path: string) => {
   color: #2563eb;
   cursor: pointer;
 }
-.main {
+.main-item {
   display: flex;
   gap: 20px;
   margin-top: 20px;
