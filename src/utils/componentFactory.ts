@@ -145,9 +145,9 @@ export const componentMaps: ComponentMaps = {
         attr: {
           path: '',
           title: '公告标题',
-          titContent: '公告内容标题',
           more: '更多 >',
           morePath: '',
+          titContent: '公告内容标题',
           content: '公告内容',
           time: '2025-02-28',
           createdBy: '---学校',
@@ -161,7 +161,41 @@ export const componentMaps: ComponentMaps = {
         }
       }
     },
-    { type: 'mien', label: '风采组件' },
+    {
+      type: 'mien',
+      label: '风采组件',
+      props: {
+        temp: '1',
+        attr: {
+          title: '风采标题',
+          more: '更多 >',
+          morePath: '',
+          children: [
+            {
+              image: 'https://static.form-create.com/example.png',
+              txt: '风采',
+              path: '',
+            },
+            {
+              image: 'https://images.pexels.com/photos/31752572/pexels-photo-31752572.jpeg',
+              txt: '风采',
+              path: '',
+            },
+            {
+              image: 'https://static.form-create.com/example.png',
+              txt: '风采',
+              path: '',
+            }
+          ]
+        },
+        style: {
+          padding: 20,
+          margin: 0,
+          background: '#fff',
+          borderRadius: 10
+        }
+      }
+    },
     { type: 'survey', label: '概况组件' },
     { type: 'week', label: '周安排组件' },
     { type: 'swiper', label: '轮播组件' }

@@ -2,7 +2,12 @@
   <div :style="{ ...compProps.style, borderRadius: addPxIfNeeded(compProps.style.borderRadius) }">
     <div class="notice">
       <div class="notice-head">
-        <div class="head-left">{{ compProps.attr.title }}</div>
+        <div class="head-left">
+          <div class="title-info">
+            {{ compProps.attr.title }}
+          </div>
+          <div class="title-line"></div>
+        </div>
         <div class="head-right" @click="to(compProps.attr.morePath)">{{ compProps.attr.more }}</div>
       </div>
     </div>
@@ -63,6 +68,20 @@ const to = (path: string) => {
   font-size: 16px;
   font-weight: bold;
   color: rgba(16, 16, 16, 1);
+  position: relative;
+}
+.title-info {
+  z-index: 4;
+  position: relative;
+}
+
+.title-line {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(270deg, #98c9ff 0%, #ffffff 100%);
+  z-index: 3;
+  bottom: 0;
 }
 .head-right {
   font-size: 12px;

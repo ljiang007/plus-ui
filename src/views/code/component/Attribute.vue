@@ -28,8 +28,11 @@ const update = (propsData: any) => {
 </script>
 
 <style scoped>
+/* 只在此区域超出高度出现滚动条，不要出现全屏滚动条 */
 .attr {
   padding: 20px;
   padding-top: 50px;
+  overflow-y: auto;
+  height: calc(100vh - 35px);
 }
 </style>
