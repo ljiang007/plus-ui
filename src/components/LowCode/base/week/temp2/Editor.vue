@@ -1,4 +1,4 @@
-<template>编辑1</template>
+<template>编辑2</template>
 
 <script setup lang="ts">
 

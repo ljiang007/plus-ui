@@ -174,17 +174,17 @@ export const componentMaps: ComponentMaps = {
             {
               image: 'https://static.form-create.com/example.png',
               txt: '风采',
-              path: '',
+              path: ''
             },
             {
               image: 'https://images.pexels.com/photos/31752572/pexels-photo-31752572.jpeg',
               txt: '风采',
-              path: '',
+              path: ''
             },
             {
               image: 'https://static.form-create.com/example.png',
               txt: '风采',
-              path: '',
+              path: ''
             }
           ]
         },
@@ -196,8 +196,46 @@ export const componentMaps: ComponentMaps = {
         }
       }
     },
-    { type: 'survey', label: '概况组件' },
-    { type: 'week', label: '周安排组件' },
+    {
+      type: 'survey',
+      label: '概况组件',
+      props: {
+        temp: '1',
+        attr: {
+          title: '概况标题',
+          content: '概况内容'
+        },
+        style: {
+          padding: 20,
+          margin: 0,
+          background: '#fff',
+          borderRadius: 10
+        }
+      }
+    },
+    {
+      type: 'week',
+      label: '周安排组件',
+      props: {
+        temp: '1',
+        attr: {
+          title: '周安排标题',
+          time: new Date(),
+          children: [
+            {
+              content: '内容',
+              time: '2025-04-25 15:45'
+            }
+          ]
+        },
+        style: {
+          padding: 20,
+          margin: 0,
+          background: '#fff',
+          borderRadius: 10
+        }
+      }
+    },
     { type: 'swiper', label: '轮播组件' }
   ]
 };
